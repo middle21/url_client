@@ -88,7 +88,7 @@
       </div>
     </section>
 
-    <ShortLink v-if="showShort" style="margin-top:-50px;" :link="'http://localhost:8080/'+shorted_link"></ShortLink>
+    <ShortLink v-if="showShort" @tryAgain="tryAgain" style="margin-top:-50px;" :link="'http://localhost:8080/'+shorted_link"></ShortLink>
     <MyLinks ref="mylinks"></MyLinks>
 
     <section class="section">
@@ -137,6 +137,16 @@ export default {
     }
   },
   methods: {
+    tryAgain(){
+      this.to_be_short = '';
+      this.shorted_link = '';
+      this.selected_redirection_type = 0;
+      this.advanced = 0;
+      this.alias = '';
+      this.password = '';
+      this.description = '';
+      this.showShort = false;
+    },
     async shortLink(){
       this.loading = true;
       if(this.to_be_short == ''){
@@ -155,7 +165,7 @@ export default {
           let response = await this.$http.post('/api/item', {
             originalUrl: this.to_be_short,
             masterkey: localStorage.ownerId,
-            redirection_type: this.selected_redirection_type,
+            redirectionType: this.selected_redirection_type,
             alias: this.alias,
             expiration: this.expiration,
             password: this.password,
@@ -163,7 +173,7 @@ export default {
           });
           this.loading = false;
           this.shorted_link = response.data.urlCode;
-          this.$refs['mylinks'].links.push(response.data)
+          this.$refs['mylinks'].links.unshift(response.data)
           if(!localStorage.ownerId){
             localStorage.ownerId = response.data.ownerId;
           }

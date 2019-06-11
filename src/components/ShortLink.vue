@@ -19,8 +19,8 @@
                         >Copy</b-button>
                         <b-button
                             type="is-secondary"
-                            @click="$router.go('/')"
-                        >Try another one</b-button> <!-- emit to parent component instead of reloading the page -->
+                            @click="$emit('tryAgain',1)"
+                        >Try another one</b-button>
                     </div>
                 </div>
             </div>

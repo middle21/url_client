@@ -105,7 +105,8 @@ export default {
                     username: this.username,
                     email: this.email,
                     password: this.password,
-                    password2: this.password2
+                    password2: this.password2,
+                    owner_id: localStorage.ownerId
                 });
                 this.$router.push('/login');
                 this.$snackbar.open({

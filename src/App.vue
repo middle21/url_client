@@ -66,8 +66,7 @@
       </div>
     </nav>
 
-    <router-view @navbar="hideNavbar"></router-view>
-
+    <router-view></router-view>
 
   </div>
 </template>
@@ -96,10 +95,14 @@ export default {
         localStorage.removeItem('ownerId');
         delete this.$http.defaults.headers.common['access-token']
         this.$router.push('/')
-    },
-    hideNavbar(){
-      this.main_navbar = 0;
     }
+  },
+  mounted(){
+    this.$root.$on('hide_navbar', (data) => {
+      if(data == 'hide'){
+        this.main_navbar = 0;
+      }
+    });
   }
 }
 </script>

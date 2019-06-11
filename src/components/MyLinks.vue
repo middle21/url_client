@@ -19,6 +19,12 @@
                 <b-button @click="$router.push('/register')">Register</b-button>
             </div>
         </div>
+        <div v-else class="columns">
+            <div class="column is-6 is-offset-3 has-text-centered">
+                <b-button v-if="toggleButton == 0" @click="loadAllLinks" class="is-primary">View all links</b-button>
+                <b-button v-else @click="hideLinks" class="is-secondary">Hide</b-button>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -27,19 +33,42 @@ export default {
     data(){
         return{
             links: [],
+            toggleButton: 0
         }
     },
     async created(){
         if( this.$user.get().role === 'guest' ){
             if(localStorage.ownerId){
-                let getGuestLinks = await this.$http.get('/api/getGuestLinks?masterkey=' + localStorage.ownerId);
+                let getGuestLinks = await this.$http.get('/api/getGuestLinks?limit=5&masterkey=' + localStorage.ownerId);
                 this.links = getGuestLinks.data;
             }
         }else if( this.$user.get().role === 'registered' ){
             if(localStorage.ownerId){
-                let getMyLinks = await this.$http.get('/api/getMyLinks');
+                let getMyLinks = await this.$http.get('/api/getMyLinks?limit=5');
                 if(getMyLinks.data !== "not found"){
                     this.links = getMyLinks.data;
+                }
+            }
+        }
+    },
+    methods: {
+        hideLinks(){
+            this.toggleButton = 0;
+            this.links.splice(5,this.links.length);
+        },
+        async loadAllLinks(){
+            this.toggleButton = 1;
+            if( this.$user.get().role === 'guest' ){
+                if(localStorage.ownerId){
+                    let getGuestLinks = await this.$http.get('/api/getGuestLinks?masterkey=' + localStorage.ownerId);
+                    this.links = getGuestLinks.data;
+                }
+            }else if( this.$user.get().role === 'registered' ){
+                if(localStorage.ownerId){
+                    let getMyLinks = await this.$http.get('/api/getMyLinks');
+                    if(getMyLinks.data !== "not found"){
+                        this.links = getMyLinks.data;
+                    }
                 }
             }
         }
