@@ -15,6 +15,7 @@
     "vue": "^2.6.10",
     "vue-router": "^3.0.6",
     "vue-router-user-roles": "^0.1.92",
+    "vue-scrollto": "^2.15.0",
     "vuesax": "^3.8.74"
   },
   "devDependencies": {

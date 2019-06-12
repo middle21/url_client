@@ -88,7 +88,7 @@
       </div>
     </section>
 
-    <ShortLink v-if="showShort" @tryAgain="tryAgain" style="margin-top:-50px;" :link="'http://localhost:8080/'+shorted_link"></ShortLink>
+    <ShortLink v-if="showShort" @tryAgain="$router.go('/')" style="margin-top:-50px;" :link="'http://localhost:8080/'+shorted_link"></ShortLink>
     <MyLinks ref="mylinks"></MyLinks>
 
     <section class="section">
@@ -99,7 +99,7 @@
         </h2>
       </div>
     </section>
-
+    <br><br>
     <footer>
       <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1794 274.42">
         <defs>
@@ -158,14 +158,11 @@ export default {
   },
   methods: {
     tryAgain(){
-      this.to_be_short = '';
-      this.shorted_link = '';
-      this.selected_redirection_type = 0;
-      this.advanced = 0;
-      this.alias = '';
-      this.password = '';
-      this.description = '';
       this.showShort = false;
+      this.to_be_short = '';
+      this.selected_redirection_type = 0;
+      this.alias = '';
+      this.expiration = '';
     },
     async shortLink(){
       this.loading = true;

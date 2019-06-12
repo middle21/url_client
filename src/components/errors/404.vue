@@ -9,7 +9,7 @@
         </div>
         <div class="columns">
             <div class="column is-12 has-text-centered">
-                <b-button class="is-primary">Home</b-button>
+                <b-button @click="$router.push('/')" class="is-primary">Home</b-button>
             </div>
         </div>
     </div>

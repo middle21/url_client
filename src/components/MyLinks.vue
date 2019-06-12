@@ -20,7 +20,7 @@
             </div>
         </div>
         <div v-else class="columns">
-            <div class="column is-6 is-offset-3 has-text-centered">
+            <div v-if="links.length > 0" class="column is-6 is-offset-3 has-text-centered">
                 <b-button v-if="toggleButton == 0" @click="loadAllLinks" class="is-primary">View all links</b-button>
                 <b-button v-else @click="hideLinks" class="is-secondary">Hide</b-button>
             </div>

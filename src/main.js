@@ -5,9 +5,12 @@ import router from './routes.js';
 import axios from 'axios';
 import Buefy from 'buefy'
 import VueRouterUserRoles from "vue-router-user-roles";
+import VueScrollTo from "vue-scrollto";
 
 import 'buefy/dist/buefy.css'
 
+
+Vue.use(VueScrollTo);
 
 Vue.use(VueRouterUserRoles, { router });
 

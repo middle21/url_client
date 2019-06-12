@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container hidden hidden-left" v-infocus="'showElement'">
         <div class="columns has-text-centered" style="margin-top:50px;">
             <div class="column is-12">
                 <div class="title">Abuse report</div>
@@ -62,6 +62,29 @@ export default {
             loading: false,
         }
     },
+    directives: {
+        infocus: {
+            isLiteral: true,
+            inserted: (el, binding,vnode) => {
+                let f = () => {
+                    let rect = el.getBoundingClientRect();
+                    let inView = (
+                        rect.width > 0 &&
+                        rect.height > 0 &&
+                        rect.top >= 0 &&
+                        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)
+                    );
+                    if(inView) {
+                        el.classList.add(binding.value);
+                        window.addEventListener('scroll', f);
+                    }
+                };
+
+                window.addEventListener('scroll', f);
+                f();
+            }
+        }
+    },
     methods: {
         async report(){
             this.loading = true;
@@ -113,4 +136,23 @@ export default {
 </script>
 
 <style scoped>
+.hidden {
+  opacity: 0;
+}
+
+.hidden-right {
+  transform: translate(50px, 0);
+}
+
+.hidden-left {
+  transform: translate(-50px, 0);
+}
+
+.showElement {
+  opacity: 1;
+  transform: translate(0, 0);
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+}
 </style>
