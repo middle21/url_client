@@ -93,12 +93,32 @@
 
     <section class="section">
       <div class="container">
-        <h1 class="title">Section</h1>
+        <h1 class="title">Links that mean business</h1>
         <h2 class="subtitle">
-          A simple container to divide your page into <strong>sections</strong>, like the one you're currently reading
+          Create and share trusted, <strong>powerful</strong> short links
         </h2>
       </div>
     </section>
+
+    <footer>
+      <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1794 274.42">
+        <defs>
+          <linearGradient id="linear-gradient" x1="1269.83" y1="1426.04" x2="735.17" y2="499.96" gradientUnits="userSpaceOnUse">
+            <stop offset="0.1" stop-color="#5f5f5f" stop-opacity="0"/>
+            <stop offset="0.19" stop-color="#626262" stop-opacity="0.02"/>
+            <stop offset="0.3" stop-color="#6c6c6c" stop-opacity="0.09"/>
+            <stop offset="0.43" stop-color="#7d7d7d" stop-opacity="0.19"/>
+            <stop offset="0.57" stop-color="#949494" stop-opacity="0.34"/>
+            <stop offset="0.71" stop-color="#b1b1b1" stop-opacity="0.54"/>
+            <stop offset="0.86" stop-color="#d5d5d5" stop-opacity="0.77"/>
+            <stop offset="1" stop-color="#f9f9f9"/>
+          </linearGradient>
+        </defs>
+        <title>shortlink</title>
+        <path class="cls-1" d="M105.5,863.5v199h1794v-199C1473,946,866.6,804.24,612,790,326,774,105.5,863.5,105.5,863.5Z" transform="translate(-105.5 -788.08)"/>
+      </svg>
+    </footer>
+    
   </div>
 </template>
 
@@ -196,4 +216,8 @@ export default {
 </script>
 
 <style scoped>
+.cls-1 {
+  fill: url(#linear-gradient);
+}
+
 </style>

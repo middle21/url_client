@@ -8,12 +8,17 @@ import Register from "./components/auth/Register.vue";
 import Forgot from "./components/auth/Forgot.vue";
 import ResetPassword from "./components/auth/ResetPassword.vue";
 
+import About from "./components/About.vue";
+import Report from "./components/Report.vue";
+
 import FourOFour from "./components/errors/404.vue";
 
 Vue.use(VueRouter);
 
 let routes = [
     { path: '/', component: Home, name: 'Home' },
+    { path: '/about', component: About },
+    { path: '/report', component: Report },
     { path: '/404', component: FourOFour },
     {
         path: '/login',
